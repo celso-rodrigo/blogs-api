@@ -7,6 +7,4 @@ const validateEmailAndPw = (req, res, next) => {
   }
 };
 
-module.exports = {
-  validateEmailAndPw,
-};
+module.exports = { validateEmailAndPw };

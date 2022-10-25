@@ -8,6 +8,7 @@ const routers = require('./routers');
 app.use(express.json());
 
 app.use('/login', routers.LoginRoutes);
+app.use('/user', routers.userRoutes);
 
 app.use((err, _req, res, _next) => {
   res
