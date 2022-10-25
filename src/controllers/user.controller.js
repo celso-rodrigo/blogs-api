@@ -18,6 +18,12 @@ const checkIfEmailExists = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  const response = await userService.getAllUsers();
+  res.status(200).json(response);
+};
+
 module.exports = {
   checkIfEmailExists,
+  getAllUsers,
 };
