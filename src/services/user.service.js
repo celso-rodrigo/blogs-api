@@ -10,7 +10,13 @@ const createUser = async ({ displayName, email, password, image }) => {
   return newUser;
 };
 
+const getUserById = async (id) => {
+  const user = await User.findOne({ where: id });
+  return user;
+};
+
 module.exports = {
   checkEmail,
   createUser,
+  getUserById,
 };
