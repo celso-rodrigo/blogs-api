@@ -7,6 +7,7 @@ const auth = require('../auth/validateJWT');
 const userController = require('../controllers/user.controller');
 
 router.get('/', auth.validateToken, userController.getAllUsers);
+router.get('/:id', auth.validateToken, userController.getUserById);
 router.post(
   '/',
   middlewares.validateName,
