@@ -3,8 +3,17 @@ const express = require('express');
 // ...
 
 const app = express();
+const routers = require('./routers');
 
 app.use(express.json());
+
+app.use('/login', routers.LoginRoutes);
+
+app.use((err, _req, res, _next) => {
+  res
+    .status(500)
+    .json({ message: err.message });
+});
 
 // ...
 
