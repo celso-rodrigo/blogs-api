@@ -21,9 +21,17 @@ const getAllPosts = async () => {
   return allPosts;
 };
 
+const getPostById = async (id) => {
+  const post = await BlogPost.findByPk(id, {
+    include: { all: true, attributes: { exclude: 'password' } },
+  });
+  return post;
+};
+
 module.exports = {
   savePost,
   checkCategories,
   savePostCategory,
   getAllPosts,
+  getPostById,
 };
