@@ -15,7 +15,9 @@ const savePostCategory = async (categoryId, postId) => {
 };
 
 const getAllPosts = async () => {
-  const allPosts = await PostCategory.findAll();
+  const allPosts = await BlogPost.findAll({
+    include: { all: true, attributes: { exclude: 'password' } },
+  });
   return allPosts;
 };
 

@@ -12,6 +12,6 @@ router.post(
   middlewares.validatePostInputs,
   postController.savePost,
 );
-router.get('/', postController.getAllPosts);
+router.get('/', auth.validateToken, postController.getAllPosts);
 
 module.exports = router;
