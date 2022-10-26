@@ -7,6 +7,12 @@ const saveCategory = async (req, res) => {
   res.status(201).json({ id: newCategory.id, name: newCategory.name });
 };
 
+const getAllCategories = async (req, res) => {
+  const categories = await categoriesService.getAllCategories();
+  res.status(200).json(categories);
+};
+
 module.exports = {
   saveCategory,
+  getAllCategories,
 };
