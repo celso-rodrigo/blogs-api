@@ -1,7 +1,6 @@
 const validateName = (req, res, next) => {
   const { displayName } = req.body;
-  console.log(displayName);
-  if (!displayName || !displayName.length >= 8) {
+  if (!displayName || displayName.length <= 8) {
     res.status(400).json({ message: '"displayName" length must be at least 8 characters long' });
   } else {
     next();
@@ -20,7 +19,7 @@ const validateEmail = (req, res, next) => {
 
 const validatePassword = (req, res, next) => {
   const { password } = req.body;
-  if (!password || !password.length >= 6) {
+  if (!password || password.length < 6) {
     res.status(400).json({ message: '"password" length must be at least 6 characters long' });
   } else {
     next();

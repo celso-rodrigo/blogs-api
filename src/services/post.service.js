@@ -28,10 +28,16 @@ const getPostById = async (id) => {
   return post;
 };
 
+const updatePost = async ({ title, content }, id) => {
+  const post = await BlogPost.update({ title, content }, { where: { id } });
+  return post;
+};
+
 module.exports = {
   savePost,
   checkCategories,
   savePostCategory,
   getAllPosts,
   getPostById,
+  updatePost,
 };

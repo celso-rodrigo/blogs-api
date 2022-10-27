@@ -8,10 +8,17 @@ const middlewares = require('../middlewares/validatePostInputs');
 
 router.get('/', auth.validateToken, postController.getAllPosts);
 router.get('/:id', auth.validateToken, postController.getPostById);
+router.put(
+  '/:id',
+  auth.validateToken,
+  middlewares.validatePostInputs,
+  postController.updatePost,
+);
 router.post(
   '/',
   auth.validateToken,
   middlewares.validatePostInputs,
+  middlewares.validatePostCategory,
   postController.savePost,
 );
 
