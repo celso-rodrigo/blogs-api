@@ -15,5 +15,6 @@ router.post(
   middlewares.validatePassword,
   userController.checkIfEmailExists,
 );
+router.delete('/me', auth.validateToken, userController.deleteUsere);
 
 module.exports = router;

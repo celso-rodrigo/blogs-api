@@ -29,8 +29,14 @@ const getUserById = async (req, res) => {
   res.status(404).json({ message: 'User does not exist' });
 };
 
+const deleteUsere = async (req, res) => {
+  await userService.deleteUser(req.user.id);
+  res.status(204).end();
+};
+
 module.exports = {
   checkIfEmailExists,
   getAllUsers,
   getUserById,
+  deleteUsere,
 };
