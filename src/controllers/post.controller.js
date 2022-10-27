@@ -27,20 +27,32 @@ const getPostById = async (req, res) => {
   res.status(200).json(post);
 };
 
-const updatePost = async (req, res) => {
+const verifyOwnership = async (req, res, next) => {
   const { id } = req.user;
   const postToUpdate = await postService.getPostById(req.params.id);
-  const postId = postToUpdate.userId;
   if (postToUpdate === null) return res.status(404).json(POST_NOT_FOUND);
+  const postId = postToUpdate.userId;
   if (postId !== id) return res.status(401).json({ message: 'Unauthorized user' });
-  await postService.updatePost(req.body, postId);
-  const updatedPost = await postService.getPostById(postId);
+  next();
+};
+
+const updatePost = async (req, res) => {
+  const { id } = req.params;
+  await postService.updatePost(req.body, id);
+  const updatedPost = await postService.getPostById(id);
   res.status(200).json(updatedPost);
 };
 
+const deletePost = async (req, res) => {
+  await postService.deletePost(req.params.id);
+  res.status(204).end();
+};
+
 module.exports = {
+  verifyOwnership,
   savePost,
   getAllPosts,
   getPostById,
   updatePost,
+  deletePost,
 };

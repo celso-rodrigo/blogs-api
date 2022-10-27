@@ -12,6 +12,7 @@ router.put(
   '/:id',
   auth.validateToken,
   middlewares.validatePostInputs,
+  postController.verifyOwnership,
   postController.updatePost,
 );
 router.post(
@@ -20,6 +21,12 @@ router.post(
   middlewares.validatePostInputs,
   middlewares.validatePostCategory,
   postController.savePost,
+);
+router.delete(
+  '/:id',
+  auth.validateToken,
+  postController.verifyOwnership,
+  postController.deletePost,
 );
 
 module.exports = router;

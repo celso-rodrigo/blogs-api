@@ -1,4 +1,4 @@
-const { BlogPost, Category, PostCategory, User } = require('../models');
+const { BlogPost, Category, PostCategory } = require('../models');
 
 const savePost = async (postObj) => {
   const post = await BlogPost.create(postObj);
@@ -33,6 +33,8 @@ const updatePost = async ({ title, content }, id) => {
   return post;
 };
 
+const deletePost = async (id) => BlogPost.destroy({ where: { id } });
+
 module.exports = {
   savePost,
   checkCategories,
@@ -40,4 +42,5 @@ module.exports = {
   getAllPosts,
   getPostById,
   updatePost,
+  deletePost,
 };
