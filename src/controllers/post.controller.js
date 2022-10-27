@@ -9,8 +9,8 @@ const savePost = async (req, res) => {
   if (invalidCategory) return res.status(400).json(CATEGORYID_NOT_FOUND);
   const postObj = { title, content, categoryIds, userId: id };
   const post = await postService.savePost(postObj);
-  categoryIds.map(async (categoryId) => 
-    postService.savePostCategory(categoryId, post.id));
+  await Promise.all(categoryIds.map(async (categoryId) => 
+  postService.savePostCategory(categoryId, post.id)));
   res.status(201).json(post);
 };
 
