@@ -48,6 +48,13 @@ const deletePost = async (req, res) => {
   res.status(204).end();
 };
 
+const searchPost = async (req, res, next) => {
+  const query = req.query.q;
+  if (query === undefined) return next();
+  const searchedPosts = await postService.serchByQuery(query);
+  res.status(200).json(searchedPosts);
+};
+
 module.exports = {
   verifyOwnership,
   savePost,
@@ -55,4 +62,5 @@ module.exports = {
   getPostById,
   updatePost,
   deletePost,
+  searchPost,
 };

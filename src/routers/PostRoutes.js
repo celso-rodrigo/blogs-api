@@ -7,7 +7,12 @@ const postController = require('../controllers/post.controller');
 const middlewares = require('../middlewares/validatePostInputs');
 
 router.get('/', auth.validateToken, postController.getAllPosts);
-router.get('/:id', auth.validateToken, postController.getPostById);
+router.get(
+  '/:id',
+  auth.validateToken,
+  postController.searchPost,
+  postController.getPostById,
+  );
 router.put(
   '/:id',
   auth.validateToken,
