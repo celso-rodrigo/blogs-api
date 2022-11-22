@@ -18,19 +18,33 @@
 
 <h2>Endpoints</h2>
 
+
+<h3>/login</h3>
+
+| Método | Função | Corpo |
+|---|---|---|
+|POST| Realiza login e retorna o token | { "email": string, "password": string }|
+
+<hr />
+
 <h3>/user</h3>
 
 | Método | Função | Corpo |
 |---|---|---|
-|POST| Realiza login e retorna o token | { "email": string, "password": string } |
-
-<hr />
+|GET| Retorna todos os usuários | |
+|POST| Cadastra pessoa usuária | { "displayName": string, "email": string, "password": string, "image": url(Opcional) } |
 
 <h3>/user/:id</h3>
 
 | Método | Função | Corpo |
 |---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
+|GET| Retorna usuário com base no id | |
+
+<h3>/user/me</h3>
+
+| Método | Função | Corpo |
+|---|---|---|
+|DELETE| Deleta usuário | |
 
 <hr />
 
@@ -38,15 +52,8 @@
 
 | Método | Função | Corpo |
 |---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
-
-<hr />
-
-<h3>/user/me</h3>
-
-| Método | Função | Corpo |
-|---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
+|GET| Retorna todas as categorias | |
+|POST| Cadastra categoria | { "name": string } |
 
 <hr />
 
@@ -54,23 +61,22 @@
 
 | Método | Função | Corpo |
 |---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
-
-<hr />
+|POST| Retorna todos os posts | |
+|POST| Cadastra um post | { "title": string, "content": string, "categoryIds": arrayOfNumbers } |
 
 <h3>/post/:id</h3>
 
 | Método | Função | Corpo |
 |---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
-
-<hr />
+|GET| Retorna post com base no id | |
+|PUT| Alterar post com base no id | { "title": string, "content": string } |
+|DELETE| Deleta post com base no id  | |
 
 <h3>/post/search?q=:searchTerm</h3>
 
 | Método | Função | Corpo |
 |---|---|---|
-|GET| Retorna todas as pessoas palestrantes | |
+|GET| Retorna posts com base na query | |
 
 <br/>
 
